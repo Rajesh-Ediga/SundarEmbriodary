@@ -24,7 +24,6 @@
     "@angular/build": "^22.1.8",
     "@angular/cli": "^22.1.8",
     "@angular/compiler-cli": "^22.1.0",
-    "@oxc-parser/binding-win32-x64-msvc": "^0.142.0",
     "prettier": "^3.8.1",
     "typescript": "~6.0.2"
   }

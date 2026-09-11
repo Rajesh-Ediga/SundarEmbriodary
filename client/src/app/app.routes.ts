@@ -4,8 +4,8 @@ import { BusinessDashboardComponent } from './business/business-dashboard.compon
 import { BusinessLoginComponent } from './business/business-login.component';
 
 export const routes: Routes = [
-  { path: 'business/login', component: BusinessLoginComponent },
-  { path: 'business/dashboard', component: BusinessDashboardComponent, canActivate: [businessAuthGuard] },
-  { path: '', pathMatch: 'full', redirectTo: 'business/login' },
-  { path: '**', redirectTo: 'business/login' }
+  { path: 'login', component: BusinessLoginComponent },
+  { path: 'dashboard', component: BusinessDashboardComponent, canActivate: [businessAuthGuard] },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: '**', redirectTo: 'login' }
 ];
