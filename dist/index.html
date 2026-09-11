@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#681f2a">
+  <meta name="description" content="Browse saree, blouse, bridal and bulk embroidery designs from Sundar Embroidery Works in Anantapur.">
+  <title>Sundar Embroidery Works</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Sundar Embroidery Works home">
+      <span class="brand-mark">S</span><span><b>Sundar</b><small>Embroidery Works</small></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#designs">Designs</a><a href="#bulk">Bulk Orders</a><a href="#track">Track Order</a>
+    </nav>
+    <a class="call-link" href="tel:+919849946388">Call shop</a>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Crafted in Anantapur</p>
+        <h1>Beautiful Embroidery,<br><em>Made for You</em></h1>
+        <p>Browse saree, blouse, bridal and logo embroidery designs from Sundar Embroidery Works.</p>
+        <div class="hero-actions"><a class="button primary" href="#designs">Browse designs</a><a class="button ghost" href="#bulk">Request bulk quote</a></div>
+        <div class="service-check">
+          <label for="pincode">Check service availability</label>
+          <div><input id="pincode" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit pincode"><button id="checkPincode">Check</button></div>
+          <p id="pincodeResult" aria-live="polite"></p>
+        </div>
+      </div>
+      <figure class="hero-image"><img src="assets/emerald-saree.png" alt="Emerald saree with detailed gold and pink floral embroidery"><figcaption>Illustrative design preview</figcaption></figure>
+    </section>
+
+    <section class="section categories" aria-labelledby="category-title">
+      <div class="section-heading"><div><p class="eyebrow">Explore our work</p><h2 id="category-title">Embroidery for every occasion</h2></div><p>Choose a category to quickly find the right style.</p></div>
+      <div id="categoryFilters" class="category-grid"></div>
+    </section>
+
+    <section id="designs" class="section designs" aria-labelledby="design-title">
+      <div class="section-heading"><div><p class="eyebrow">Selected designs</p><h2 id="design-title">Popular from our workshop</h2></div><button class="text-button" id="showAll">View all designs</button></div>
+      <div id="productGrid" class="product-grid"></div>
+    </section>
+
+    <section id="bulk" class="bulk section">
+      <div><p class="eyebrow light">For teams & businesses</p><h2>Planning a bulk embroidery order?</h2><p>Uniforms, T-shirts, caps, bags and sarees. Tell us your quantity, pincode and required date. Our team will review it and contact you with a quotation.</p></div>
+      <form id="bulkForm">
+        <label>Product type<select name="productType" required><option value="">Choose one</option><option>T-Shirt</option><option>Uniform</option><option>Cap</option><option>Saree</option><option>Bag</option><option>Other</option></select></label>
+        <label>Quantity<input name="quantity" type="number" min="1" required placeholder="e.g. 50"></label>
+        <label>Your name<input name="name" required autocomplete="name"></label>
+        <label>Mobile number<input name="mobile" inputmode="tel" required autocomplete="tel"></label>
+        <label>Delivery pincode<input name="deliveryPincode" inputmode="numeric" maxlength="6" required></label>
+        <label>Required date<input name="requiredDate" type="date" required></label>
+        <label class="wide">Additional requirements<textarea name="requirements" rows="3" placeholder="Logo placement, colours, material or other details"></textarea></label>
+        <button class="button gold wide" type="submit">Send bulk request on WhatsApp</button>
+      </form>
+    </section>
+
+    <section id="track" class="section tracking">
+      <div><p class="eyebrow">Order updates</p><h2>Track your embroidery</h2><p>Enter the order number given by our team. This demo shows how customers will follow progress in the complete app.</p></div>
+      <div class="track-card"><label for="orderNumber">Order number</label><div><input id="orderNumber" placeholder="e.g. SEW-1001"><button id="trackButton">Track</button></div><div id="trackResult" aria-live="polite"></div></div>
+    </section>
+
+    <section class="visit section">
+      <div><p class="eyebrow">Visit our workshop</p><h2>Sundar Embroidery Works</h2><p>Shop No. 7, Raghuveera Towers,<br>Kamala Nagar, Anantapur,<br>Andhra Pradesh, India</p></div>
+      <div class="visit-details"><p><span>Open daily</span>10:00 AM – 9:00 PM</p><p><span>Call or WhatsApp</span>+91 98499 46388</p><a class="button primary" href="https://wa.me/919849946388?text=Hello%20Sundar%20Embroidery%20Works%2C%20I%20would%20like%20to%20know%20more%20about%20your%20designs." target="_blank" rel="noopener">Chat on WhatsApp</a></div>
+    </section>
+  </main>
+
+  <footer><div class="brand"><span class="brand-mark">S</span><span><b>Sundar</b><small>Embroidery Works</small></span></div><p>Made with care in Anantapur</p><p>© <span id="year"></span> Sundar Embroidery Works</p></footer>
+  <a class="whatsapp-float" href="https://wa.me/919849946388" aria-label="Chat with Sundar Embroidery Works on WhatsApp">WhatsApp</a>
+  <dialog id="productDialog"><button class="dialog-close" aria-label="Close">×</button><div id="productDetail"></div></dialog>
+  <script src="app.js"></script>
+</body>
+</html>

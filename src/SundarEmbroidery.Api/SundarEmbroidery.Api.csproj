@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\SundarEmbroidery.Application\SundarEmbroidery.Application.csproj" />
+    <ProjectReference Include="..\SundarEmbroidery.Infrastructure\SundarEmbroidery.Infrastructure.csproj" />
+    <ProjectReference Include="..\SundarEmbroidery.Domain\SundarEmbroidery.Domain.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

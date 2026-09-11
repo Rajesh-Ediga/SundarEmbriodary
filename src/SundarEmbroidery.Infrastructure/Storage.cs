@@ -1,0 +1,3 @@
+namespace SundarEmbroidery.Infrastructure;
+public interface IFileStorageService { Task<string> SaveAsync(Stream content,string fileName,CancellationToken cancellationToken=default); }
+public sealed class LocalFileStorageService(string root):IFileStorageService { public async Task<string> SaveAsync(Stream content,string fileName,CancellationToken cancellationToken=default){Directory.CreateDirectory(root);var safe=$"{Guid.NewGuid():N}{Path.GetExtension(fileName)}";var path=Path.Combine(root,safe);await using var output=File.Create(path);await content.CopyToAsync(output,cancellationToken);return safe;} }

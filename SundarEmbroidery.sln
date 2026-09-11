@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8860E3D5-3641-4164-9D8D-43FB4E3706CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SundarEmbroidery.Api", "src\SundarEmbroidery.Api\SundarEmbroidery.Api.csproj", "{37DC32F3-C805-42C5-B646-B92787BE7FE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SundarEmbroidery.Application", "src\SundarEmbroidery.Application\SundarEmbroidery.Application.csproj", "{F04FAF70-ABD1-4F38-9C41-FD2D6FCF8C7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SundarEmbroidery.Domain", "src\SundarEmbroidery.Domain\SundarEmbroidery.Domain.csproj", "{4324D3A5-4E72-4430-9663-9BF35F7C15C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SundarEmbroidery.Infrastructure", "src\SundarEmbroidery.Infrastructure\SundarEmbroidery.Infrastructure.csproj", "{627C147A-9912-47C7-A24E-BD001908D003}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7075DA45-749E-4147-968B-5F0EDE702B7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SundarEmbroidery.UnitTests", "tests\SundarEmbroidery.UnitTests\SundarEmbroidery.UnitTests.csproj", "{842B8B35-7662-42D8-9553-8C259CC6888F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37DC32F3-C805-42C5-B646-B92787BE7FE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37DC32F3-C805-42C5-B646-B92787BE7FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37DC32F3-C805-42C5-B646-B92787BE7FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37DC32F3-C805-42C5-B646-B92787BE7FE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F04FAF70-ABD1-4F38-9C41-FD2D6FCF8C7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F04FAF70-ABD1-4F38-9C41-FD2D6FCF8C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F04FAF70-ABD1-4F38-9C41-FD2D6FCF8C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F04FAF70-ABD1-4F38-9C41-FD2D6FCF8C7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4324D3A5-4E72-4430-9663-9BF35F7C15C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4324D3A5-4E72-4430-9663-9BF35F7C15C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4324D3A5-4E72-4430-9663-9BF35F7C15C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4324D3A5-4E72-4430-9663-9BF35F7C15C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{627C147A-9912-47C7-A24E-BD001908D003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{627C147A-9912-47C7-A24E-BD001908D003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{627C147A-9912-47C7-A24E-BD001908D003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{627C147A-9912-47C7-A24E-BD001908D003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{842B8B35-7662-42D8-9553-8C259CC6888F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{842B8B35-7662-42D8-9553-8C259CC6888F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{842B8B35-7662-42D8-9553-8C259CC6888F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{842B8B35-7662-42D8-9553-8C259CC6888F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{37DC32F3-C805-42C5-B646-B92787BE7FE0} = {8860E3D5-3641-4164-9D8D-43FB4E3706CC}
+		{F04FAF70-ABD1-4F38-9C41-FD2D6FCF8C7B} = {8860E3D5-3641-4164-9D8D-43FB4E3706CC}
+		{4324D3A5-4E72-4430-9663-9BF35F7C15C7} = {8860E3D5-3641-4164-9D8D-43FB4E3706CC}
+		{627C147A-9912-47C7-A24E-BD001908D003} = {8860E3D5-3641-4164-9D8D-43FB4E3706CC}
+		{842B8B35-7662-42D8-9553-8C259CC6888F} = {7075DA45-749E-4147-968B-5F0EDE702B7B}
+	EndGlobalSection
+EndGlobal

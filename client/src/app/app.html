@@ -1,0 +1,11 @@
+<div class="shell">
+  <aside>
+    <div class="brand"><span>S</span><div><strong>Sundar</strong><small>Embroidery Works</small></div></div>
+    <nav><a class="active">Dashboard</a><a>Products</a><a>Categories</a><a>Orders</a><a>Bulk Enquiries</a><a>Customers</a><a>Service Areas</a><a>Business Profile</a><a>Settings</a></nav>
+  </aside>
+  <main>
+    <header><div><small>BUSINESS PORTAL</small><h1>Good morning, Sundar</h1><p>Here is what is happening in your workshop.</p></div><button>+ Add product</button></header>
+    <section class="stats"><article *ngFor="let item of stats"><span>{{item.label}}</span><strong>{{item.value}}</strong><small>Ready for live data</small></article></section>
+    <section class="panel"><div><small>GET STARTED</small><h2>Add your real embroidery designs</h2><p>The business dashboard shell is ready. The next phase connects PostgreSQL, secure login and image uploads so your team can manage this catalogue.</p></div><button>Add first design</button></section>
+  </main>
+</div>
