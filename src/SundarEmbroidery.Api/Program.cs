@@ -3,7 +3,12 @@ using SundarEmbroidery.Application;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<ICatalogService, DemoCatalogService>();
 builder.Services.AddProblemDetails();
-builder.Services.AddCors(o=>o.AddDefaultPolicy(p=>p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? [];
+builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
+{
+    if (allowedOrigins.Length > 0)
+        policy.WithOrigins(allowedOrigins).AllowAnyHeader().AllowAnyMethod();
+}));
 var app = builder.Build();
 app.UseExceptionHandler();
 app.UseCors();

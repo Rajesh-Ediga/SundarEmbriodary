@@ -1,0 +1,11 @@
+{
+  "name": "sundar-embroidery-demo",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node scripts/verify-demo.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

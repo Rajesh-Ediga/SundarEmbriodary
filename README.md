@@ -36,6 +36,14 @@ npx serve dist
 
 Then open the local address shown in the terminal.
 
+Demo data is isolated in `dist/demo-data.js`; runtime mode and API configuration are in `dist/config.js`.
+
+## Deploy the public demo to Vercel
+
+Push this folder to a Git provider, import the repository in Vercel, choose **Other** as the framework preset, run `npm run build`, and set the output directory to `dist`. No environment variables are needed for the current demo. `vercel.json` preserves SPA routing on direct refreshes.
+
+See `DEPLOYMENT-AUDIT.md` for the complete audit, dependency map and production limitations.
+
 ## Run the backend
 
 ```powershell
