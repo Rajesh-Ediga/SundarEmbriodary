@@ -1,18 +1,11 @@
-window.SUNDAR_DEMO_DATA = Object.freeze({
-  categories: ['All','Saree Embroidery','Blouse Embroidery','Bridal Embroidery','T-Shirt Logo','Uniform Embroidery','Caps & Bags'],
-  products: [
-    {id:1,category:'Saree Embroidery',name:'Royal Floral Saree Border',price:'Request quote',days:'3–5 days',bulk:true,tint:'transparent'},
-    {id:2,category:'Blouse Embroidery',name:'Peacock Bridal Blouse',price:'Request quote',days:'4–7 days',bulk:false,tint:'rgba(109,29,51,.4)'},
-    {id:3,category:'Bridal Embroidery',name:'Gold Zari Bridal Pattern',price:'Request quote',days:'7–12 days',bulk:false,tint:'rgba(128,77,18,.3)'},
-    {id:4,category:'T-Shirt Logo',name:'Company Logo Stitching',price:'Bulk quotation',days:'5–10 days',bulk:true,tint:'rgba(25,51,79,.55)'},
-    {id:5,category:'Uniform Embroidery',name:'School Uniform Logo',price:'Bulk quotation',days:'5–10 days',bulk:true,tint:'rgba(43,78,53,.45)'},
-    {id:6,category:'Caps & Bags',name:'Custom Cap Embroidery',price:'Bulk quotation',days:'5–8 days',bulk:true,tint:'rgba(74,44,86,.45)'},
-    {id:7,category:'Saree Embroidery',name:'Temple Motif Pallu',price:'Request quote',days:'4–6 days',bulk:false,tint:'rgba(95,34,29,.35)'},
-    {id:8,category:'Blouse Embroidery',name:'Fine Floral Neckline',price:'Request quote',days:'3–5 days',bulk:false,tint:'rgba(174,92,115,.35)'}
-  ],
-  sampleOrder: {
-    number: 'SEW-1001',
-    completedStages: ['Order confirmed','Design finalized'],
-    pendingStages: ['In production','Quality check','Ready / dispatched','Delivered']
-  }
-});
+const sundarGallerySets = [
+  { category:'Saree Embroidery',icon:'✦',asset:'assets/saree-gallery.webp',names:['Floral Garden Border','Temple Heritage Border','Royal Peacock Pallu','Rose Lotus Zari','Silver Mirror Work','Pastel Thread Vines','Sapphire Gold Motifs','Rani Pink Bridal Border','Emerald Kundan Border','Midnight Floral Border'] },
+  { category:'Blouse Embroidery',icon:'❀',asset:'assets/blouse-gallery.webp',names:['Ruby Floral Neckline','Royal Peacock Back','Rose Maggam Sleeve','Ivory Gold Leaves','Pearl Bridal Neckline','Mustard Mirror Work','Pastel Garden Blouse','Maroon Zari Vines','Emerald Kundan Motif','Blush Geometric Blouse'] },
+  { category:'Bridal Embroidery',icon:'♕',asset:'assets/bridal-gallery.webp',names:['Ruby Zardozi Lehenga','Emerald Kundan Bride','Ivory Pearl Veil','Rani Gold Bridal Blouse','Navy Peacock Dupatta','Blush Reception Blouse','Temple Bridal Border','Champagne Pearl Sleeve','Teal Mirror Bridal Work','Crimson Lotus Zari'] },
+  { category:'T-Shirt Logo',icon:'◆',asset:'assets/tshirt-gallery.webp',names:['Delicate Floral Tee','Classic Monogram Polo','Cafe Cup Emblem','Team Crest Polo','Pocket Garden Tee','Peacock Thread Art','Geometric Badge Polo','Rainbow Kids Tee','Wedding Initial Polo','Minimal Leaf Tee'] },
+  { category:'Uniform Embroidery',icon:'▣',asset:'assets/uniform-gallery.webp',names:['School Crest Shirt','Hotel Staff Tunic','Medical Scrub Emblem','Chef Coat Motif','Security Badge Shirt','Salon Floral Tunic','Office Polo Mark','Housekeeping Lotus','Workshop Patch Shirt','Event Team Polo'] },
+  { category:'Cap Embroidery',icon:'◒',asset:'assets/cap-gallery.webp',names:['Floral Monogram Cap','Peacock Statement Cap','Gold Paisley Cap','College Initial Cap','Sports Crest Cap','Kids Star Cap','Botanical Vine Cap','Wedding Initial Cap','Geometric Thread Cap','Elephant Motif Cap'] },
+  { category:'Bag Embroidery',icon:'◇',asset:'assets/bag-gallery.webp',names:['Garden Floral Tote','Peacock Handbag','Floral Monogram Pouch','Bridal Potli Bag','Geometric Canvas Tote','Lotus Party Clutch','Botanical Sling Bag','Elephant Artisan Tote','Gold Paisley Potli','Kids Elephant Backpack'] }
+];
+const sundarGalleryProducts=sundarGallerySets.flatMap((set,setIndex)=>set.names.map((name,imageIndex)=>({id:setIndex*10+imageIndex+1,category:set.category,name,asset:set.asset,imageIndex,price:/Uniform|T-Shirt|Cap/.test(set.category)?'Bulk quotation':'Request quote',days:set.category.includes('Bridal')?'7–12 days':'3–8 days',bulk:/T-Shirt|Uniform|Cap|Bag/.test(set.category)})));
+window.SUNDAR_DEMO_DATA=Object.freeze({categories:Object.freeze([{category:'All',icon:'✦',asset:'assets/saree-gallery.webp',imageIndex:2},...sundarGallerySets.map(set=>({category:set.category,icon:set.icon,asset:set.asset,imageIndex:0}))]),products:Object.freeze(sundarGalleryProducts),sampleOrder:Object.freeze({number:'SEW-1001',completedStages:['Order confirmed','Design finalized'],pendingStages:['In production','Quality check','Ready / dispatched','Delivered']})});
