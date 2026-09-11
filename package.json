@@ -3,9 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "node scripts/verify-demo.mjs"
+    "build": "npm ci --prefix client && npm run build --prefix client -- --configuration production --base-href /business/ --progress=false && node scripts/copy-business-app.mjs && node scripts/verify-demo.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24.15.0"
   }
 }

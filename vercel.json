@@ -4,6 +4,8 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/business", "destination": "/business/index.html" },
+    { "source": "/business/(.*)", "destination": "/business/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
