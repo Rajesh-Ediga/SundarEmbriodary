@@ -38,11 +38,38 @@ Then open the local address shown in the terminal.
 
 Demo data is isolated in `dist/demo-data.js`; runtime mode and API configuration are in `dist/config.js`.
 
+The separate Angular shell can be run locally with:
+
+```powershell
+cd client
+npm install
+npm start
+```
+
+Its development environment uses `http://localhost:5251/api`. Its production environment intentionally has a blank API base URL until a public API is deployed. The `demo` build uses centralized mock data and does not call the backend.
+
 ## Deploy the public demo to Vercel
 
 Push this folder to a Git provider, import the repository in Vercel, choose **Other** as the framework preset, run `npm run build`, and set the output directory to `dist`. No environment variables are needed for the current demo. `vercel.json` preserves SPA routing on direct refreshes.
 
 See `DEPLOYMENT-AUDIT.md` for the complete audit, dependency map and production limitations.
+
+## Production builds
+
+Validate the customer PWA from the repository root:
+
+```powershell
+npm install
+npm run build
+```
+
+Build the secondary Angular demo shell with:
+
+```powershell
+cd client
+npm install
+npm run build -- --configuration demo
+```
 
 ## Run the backend
 
@@ -59,6 +86,10 @@ Current endpoints:
 - `GET /api/products`
 - `GET /api/products/{id}`
 - `GET /api/search/products?pincode=&category=&bulk=`
+
+## Database
+
+PostgreSQL is not integrated yet, so no database process or connection string is required for the current demo or API sample catalogue. When persistence is added, keep the connection string in backend environment configuration and document the migration command here; never place it in the browser application.
 
 ## Architecture
 

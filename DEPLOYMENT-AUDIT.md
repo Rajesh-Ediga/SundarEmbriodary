@@ -37,7 +37,7 @@ PostgreSQL is not currently present. Consequently, no current feature requires i
 
 ## Demo and production modes
 
-The public demo keeps its data in `dist/demo-data.js` and runtime settings in `dist/config.js`. It has no localhost dependency. The Angular shell also has `environment.ts` and `environment.demo.ts`, with a dedicated `demo` build configuration.
+The public demo keeps its data in `dist/demo-data.js` and runtime settings in `dist/config.js`. It has no localhost dependency. The Angular shell has separate development, production and demo environment files. Development targets the local .NET API, production leaves the API URL blank until a public backend exists, and the dedicated `demo` build uses centralized mock data.
 
 The intended production architecture remains:
 
@@ -56,6 +56,7 @@ Import the Git repository into Vercel and use these settings:
 - Output directory: `dist`
 - Install command: leave default (`npm install`)
 - Environment variables: none for the current static demo
+- Recommended Node version: Node.js 24 LTS (the repository accepts Node 20 or later)
 
 `vercel.json` provides SPA fallback routing. `npm run build` validates all required demo assets. It does not expose the development laptop or require administrator privileges, Docker, ngrok or a tunnel.
 
