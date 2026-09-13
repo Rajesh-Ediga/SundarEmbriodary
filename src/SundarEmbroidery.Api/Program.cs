@@ -1,6 +1,11 @@
 using SundarEmbroidery.Application;
+using Microsoft.EntityFrameworkCore;
+using SundarEmbroidery.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' is not configured.");
+builder.Services.AddDbContext<SundarEmbroideryDbContext>(options => options.UseNpgsql(connectionString));
 builder.Services.AddSingleton<ICatalogService, DemoCatalogService>();
 builder.Services.AddProblemDetails();
 var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? [];
