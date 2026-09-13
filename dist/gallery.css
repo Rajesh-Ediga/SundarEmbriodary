@@ -16,6 +16,7 @@ body{background:linear-gradient(180deg,#fff7fb,#fffaf0 45%,#fff5f8)}
 .designs{background:linear-gradient(135deg,#5a123f 0%,#97135f 48%,#d12b70 100%);color:#fff}
 .designs .eyebrow,.designs .text-button{color:#ffd889}.designs .section-heading>p{color:#f8ddeb}
 .product-grid{grid-template-columns:repeat(5,1fr)}
+.design-status{color:#f8ddeb;margin:0 0 18px}.design-status.error{color:#ffd0d0}
 .product-card{border-radius:18px;box-shadow:0 14px 35px rgba(51,5,33,.22);transition:transform .25s,box-shadow .25s}
 .product-card:hover{transform:translateY(-7px);box-shadow:0 22px 44px rgba(51,5,33,.32)}
 .product-image{height:230px;position:relative}.product-image:after{display:none}

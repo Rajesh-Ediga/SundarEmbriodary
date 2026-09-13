@@ -1,14 +1,25 @@
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using SundarEmbroidery.Application;
 using Microsoft.EntityFrameworkCore;
 using SundarEmbroidery.Domain;
 using SundarEmbroidery.Infrastructure.Persistence;
-using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' is not configured.");
+var cloudinaryCloudName = builder.Configuration["Cloudinary:CloudName"];
+var cloudinaryApiKey = builder.Configuration["Cloudinary:ApiKey"];
+var cloudinaryApiSecret = builder.Configuration["Cloudinary:ApiSecret"];
+if (string.IsNullOrWhiteSpace(cloudinaryCloudName)
+    || string.IsNullOrWhiteSpace(cloudinaryApiKey)
+    || string.IsNullOrWhiteSpace(cloudinaryApiSecret))
+{
+    throw new InvalidOperationException("Cloudinary configuration is incomplete.");
+}
 builder.Services.AddDbContext<SundarEmbroideryDbContext>(options => options.UseNpgsql(connectionString));
 builder.Services.AddSingleton<ICatalogService, DemoCatalogService>();
+builder.Services.AddSingleton(new Cloudinary(new Account(cloudinaryCloudName, cloudinaryApiKey, cloudinaryApiSecret)));
 builder.Services.AddProblemDetails();
 var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? [];
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
@@ -16,16 +27,8 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
     if (allowedOrigins.Length > 0)
         policy.WithOrigins(allowedOrigins).AllowAnyHeader().AllowAnyMethod();
 }));
-var designUploadsPath = Path.Combine(builder.Environment.ContentRootPath, "wwwroot", "uploads", "designs");
-Directory.CreateDirectory(designUploadsPath);
 var app = builder.Build();
 app.UseExceptionHandler();
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(builder.Environment.ContentRootPath, "wwwroot")),
-    RequestPath = ""
-});
 app.UseCors();
 app.MapGet("/api/health",()=>Results.Ok(new { status="ok" }));
 app.MapGet("/api/businesses/{id:guid}",(Guid id,ICatalogService s)=>s.GetBusiness().Id==id?Results.Ok(s.GetBusiness()):Results.NotFound());
@@ -44,7 +47,7 @@ var allowedImageTypes = new Dictionary<string, string>(StringComparer.OrdinalIgn
     [".webp"] = "image/webp"
 };
 
-designs.MapPost("/upload", async (IFormFile file, HttpRequest request, CancellationToken cancellationToken) =>
+designs.MapPost("/upload", async (IFormFile file, Cloudinary cloudinary, CancellationToken cancellationToken) =>
 {
     if (file.Length == 0)
         return Results.ValidationProblem(new Dictionary<string, string[]> { ["file"] = ["An image file is required."] });
@@ -62,14 +65,19 @@ designs.MapPost("/upload", async (IFormFile file, HttpRequest request, Cancellat
         });
     }
 
-    var fileName = $"{Guid.NewGuid():N}{extension}";
-    var destinationPath = Path.Combine(designUploadsPath, fileName);
-    await using (var stream = new FileStream(destinationPath, FileMode.CreateNew, FileAccess.Write, FileShare.None, 81920, true))
+    await using var stream = file.OpenReadStream();
+    var uploadResult = await cloudinary.UploadAsync(new ImageUploadParams
     {
-        await file.CopyToAsync(stream, cancellationToken);
-    }
+        File = new FileDescription(file.FileName, stream),
+        Folder = "sundar-embroidery/designs",
+        PublicId = Guid.NewGuid().ToString("N"),
+        Overwrite = false
+    }, cancellationToken);
 
-    var imageUrl = $"{request.Scheme}://{request.Host}{request.PathBase}/uploads/designs/{fileName}";
+    var imageUrl = uploadResult.SecureUrl?.ToString();
+    if (uploadResult.Error is not null || string.IsNullOrWhiteSpace(imageUrl))
+        return Results.Problem(statusCode: StatusCodes.Status502BadGateway, title: "Cloudinary could not upload the image.");
+
     return Results.Ok(new { imageUrl });
 }).DisableAntiforgery();
 

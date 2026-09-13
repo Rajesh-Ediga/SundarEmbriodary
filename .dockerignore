@@ -1,0 +1,12 @@
+.git
+.gitignore
+.vs
+.vscode
+.env
+.env.*
+**/node_modules
+**/bin
+**/obj
+client/dist
+dist
+work
