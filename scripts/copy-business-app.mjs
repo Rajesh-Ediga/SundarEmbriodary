@@ -15,3 +15,4 @@ for (const route of ['login', 'dashboard']) {
   await copyFile(resolve(destination, 'index.html'), resolve(routeDirectory, 'index.html'));
 }
 console.log('Business portal copied to dist/business.');
+

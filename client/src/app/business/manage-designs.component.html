@@ -1,0 +1,21 @@
+<section class="design-manager" aria-labelledby="manage-title">
+  <div class="heading"><div><h2 id="manage-title">Manage Designs</h2><p>Add your workshop photos and choose which designs to publish.</p></div><button type="button" (click)="add()" [disabled]="saving() || !!draft">Add design</button></div>
+  <p class="error" role="alert" *ngIf="error()">{{error()}}</p>
+  <p role="status" *ngIf="message()">{{message()}}</p>
+  <form *ngIf="draft as form" (ngSubmit)="save()" #designForm="ngForm">
+    <h3>Design details</h3>
+    <label>Name<input name="name" [(ngModel)]="form.name" required maxlength="120" /></label>
+    <label>Category<select name="category" [(ngModel)]="form.category" required><option *ngFor="let category of categories" [value]="category">{{category}}</option></select></label>
+    <label>Price (₹)<input name="price" type="number" [(ngModel)]="form.price" min="0" step="0.01" required /></label>
+    <label>Design image<input type="file" accept="image/jpeg,image/png,image/webp" (change)="selectImage($event)" [disabled]="saving()" /><small>JPG, PNG or WebP, up to 5 MB.</small></label>
+    <p *ngIf="reading()" role="status">Preparing preview…</p>
+    <img class="preview" *ngIf="imagePreview" [src]="imagePreview" alt="Selected design preview" />
+    <label class="checkbox"><input name="published" type="checkbox" [(ngModel)]="form.isActive" />Published on customer site</label>
+    <div class="actions"><button type="submit" [disabled]="designForm.invalid || reading() || saving() || !imagePreview">{{saving() ? 'Saving…' : 'Save design'}}</button><button type="button" class="secondary" (click)="cancel()" [disabled]="saving()">Cancel</button></div>
+  </form>
+  <p *ngIf="loading()" role="status">Loading designs…</p>
+  <p *ngIf="!loading() && !designs().length">No designs added yet.</p>
+  <div class="design-grid"><article *ngFor="let design of designs()"><img [src]="design.imageUrl" [alt]="design.name" /><div class="card-body"><span>{{design.isActive ? 'Published' : 'Hidden'}}</span><h3>{{design.name}}</h3><p>{{design.category}}</p><strong>{{design.price | currency:'INR'}}</strong><div class="actions"><button class="secondary" (click)="edit(design)" [disabled]="saving()">Edit</button><button class="secondary" (click)="toggle(design)" [disabled]="saving() || !!draft">{{design.isActive ? 'Hide' : 'Publish'}}</button><button class="secondary" (click)="remove(design)" [disabled]="saving() || !!draft">Delete</button></div></div></article></div>
+</section>
+
+

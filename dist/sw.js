@@ -1,5 +1,25 @@
-const CACHE='sundar-v4';
-const ASSETS=['./','index.html','styles.css','gallery.css','config.js','demo-data.js','app.js','manifest.webmanifest','favicon.svg','assets/emerald-saree.png','assets/saree-gallery.webp','assets/blouse-gallery.webp','assets/bridal-gallery.webp','assets/tshirt-gallery.webp','assets/uniform-gallery.webp','assets/cap-gallery.webp','assets/bag-gallery.webp'];
-self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS))));
-self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key))))));
-self.addEventListener('fetch',event=>event.respondWith(caches.match(event.request).then(response=>response||fetch(event.request))));
+// Always check the network on refresh; cached files are an offline fallback only.
+const CACHE = 'sundar-v5';
+self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', event => event.waitUntil((async () => {
+  const keys = await caches.keys();
+  await Promise.all(keys.filter(key => key.startsWith('sundar-') && key !== CACHE).map(key => caches.delete(key)));
+  await self.clients.claim();
+})()));
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
+  event.respondWith((async () => {
+    try {
+      const response = await fetch(event.request, { cache: 'no-store' });
+      if (response.ok) {
+        const cache = await caches.open(CACHE);
+        await cache.put(event.request, response.clone());
+      }
+      return response;
+    } catch (error) {
+      const cached = await caches.match(event.request);
+      if (cached) return cached;
+      throw error;
+    }
+  })());
+});
