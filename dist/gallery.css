@@ -16,12 +16,13 @@ body{background:linear-gradient(180deg,#fff7fb,#fffaf0 45%,#fff5f8)}
 .designs{background:linear-gradient(135deg,#5a123f 0%,#97135f 48%,#d12b70 100%);color:#fff}
 .designs .eyebrow,.designs .text-button{color:#ffd889}.designs .section-heading>p{color:#f8ddeb}
 .product-grid{grid-template-columns:repeat(5,1fr)}
-.design-status{color:#f8ddeb;margin:0 0 18px}.design-status.error{color:#ffd0d0}
+.design-status{color:#f8ddeb;margin:0 0 18px}.design-status.error{color:#ffd0d0}.design-status.success{color:#fff3b3;font-weight:800}
 .product-card{border-radius:18px;box-shadow:0 14px 35px rgba(51,5,33,.22);transition:transform .25s,box-shadow .25s}
 .product-card:hover{transform:translateY(-7px);box-shadow:0 22px 44px rgba(51,5,33,.32)}
 .product-image{height:230px;position:relative}.product-image:after{display:none}
 .product-image span{position:absolute;right:10px;bottom:10px;background:rgba(77,8,50,.88);color:#fff;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800}
 .product-body h3{font-size:20px}.product-meta{gap:8px;font-size:13px}
+.enquiry-button{width:100%;margin-top:14px;background:#fff0b8;color:#681f4d;border:0}.enquiry-button:hover{background:#ffd86b}
 .bulk{background:linear-gradient(135deg,#4d103b,#82104f 60%,#a9175f)}.visit{background:linear-gradient(135deg,#087c70,#07524f)}
 dialog{width:min(900px,calc(100% - 28px));max-height:94vh;overflow:auto;border-radius:22px;background:#fff8fb}
 .dialog-close{z-index:3;background:#fff;color:var(--maroon);box-shadow:0 4px 16px #52103945}
@@ -30,6 +31,7 @@ dialog{width:min(900px,calc(100% - 28px));max-height:94vh;overflow:auto;border-r
 .gallery-strip{display:flex;gap:9px;overflow-x:auto;padding:14px;background:#fff;scroll-snap-type:x mandatory}
 .gallery-thumb{flex:0 0 92px;height:68px;border:3px solid transparent;border-radius:10px;cursor:pointer;scroll-snap-align:start}.gallery-thumb.active{border-color:var(--gold);box-shadow:0 4px 12px #9d4f1940}
 .detail-content{padding:24px 30px 32px}.detail-content h2{color:var(--maroon)}
+.enquiry-dialog{width:min(820px,calc(100% - 28px))}.enquiry-layout{display:grid;grid-template-columns:minmax(240px,.8fr) 1.2fr}.enquiry-design{padding:30px;background:#fff0f6}.enquiry-design img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:16px;background:#fff}.enquiry-design h2{color:var(--maroon);margin-bottom:8px}.enquiry-price{font-weight:800;color:var(--green);font-size:18px}.enquiry-layout form{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:30px}.enquiry-layout form h2,.enquiry-layout form label:nth-of-type(5),.enquiry-layout form label:nth-of-type(6),.enquiry-message,.enquiry-layout form button{grid-column:1/-1}.enquiry-layout form h2{margin:0;color:var(--maroon)}.enquiry-layout label{display:grid;gap:6px;font-weight:700;color:var(--ink)}.enquiry-layout input,.enquiry-layout select,.enquiry-layout textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:#fff;color:var(--ink);font:inherit}.enquiry-message{min-height:20px;margin:0}.enquiry-layout button:disabled{opacity:.65;cursor:wait}
 @media(max-width:1100px){.product-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:980px){.category-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.category-grid{display:flex}.category-card{min-width:190px}.product-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 0 18px}.product-card{flex:0 0 84vw;scroll-snap-align:center}.product-image{height:300px}.detail-main{height:310px}.gallery-thumb{flex-basis:78px;height:58px}.detail-content{padding:22px}.gallery-arrow{width:42px;height:42px}}
+@media(max-width:600px){.category-grid{display:flex}.category-card{min-width:190px}.product-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 0 18px}.product-card{flex:0 0 84vw;scroll-snap-align:center}.product-image{height:300px}.detail-main{height:310px}.gallery-thumb{flex-basis:78px;height:58px}.detail-content{padding:22px}.gallery-arrow{width:42px;height:42px}.enquiry-layout{display:block}.enquiry-design{padding:20px}.enquiry-design img{height:190px;aspect-ratio:auto}.enquiry-layout form{display:grid;grid-template-columns:1fr;padding:22px}.enquiry-layout form>*{grid-column:1}}

@@ -1,2 +1,242 @@
-<div class="dashboard-shell"><aside><div class="brand"><span>S</span><div><strong>Sundar</strong><small>Embroidery Works</small></div></div><nav><a class="active">Dashboard</a></nav><button class="logout mobile-hide" (click)="logout()">Logout</button></aside><main><header><div><p class="eyebrow">BUSINESS DASHBOARD</p><h1>Good morning, Sundar</h1><p>Here is today’s workshop overview.</p></div><button class="logout" (click)="logout()">Logout</button></header><section class="stats" aria-label="Business status"><article *ngFor="let item of stats" [class]="item.tone"><span>{{item.label}}</span><strong>{{item.value}}</strong></article></section><section class="enquiries"><div class="section-title"><div><p class="eyebrow">LATEST REQUESTS</p><h2>Recent Enquiries</h2></div><span>3 enquiries</span></div><div class="table-wrap"><table><thead><tr><th>Customer / Business</th><th>Product type</th><th>Quantity</th><th>Status</th><th></th></tr></thead><tbody><tr *ngFor="let enquiry of enquiries"><td data-label="Customer / Business"><strong>{{enquiry.name}}</strong></td><td data-label="Product type">{{enquiry.product}}</td><td data-label="Quantity">{{enquiry.quantity}}</td><td data-label="Status"><span class="status">{{enquiry.status}}</span></td><td><button class="view">View</button></td></tr></tbody></table></div></section><app-manage-designs></app-manage-designs></main></div>
+<div class="dashboard-shell">
 
+  <aside>
+
+    <div class="brand">
+      <span>S</span>
+
+      <div>
+        <strong>Sundar</strong>
+        <small>Embroidery Works</small>
+      </div>
+    </div>
+
+    <nav>
+      <a class="active">Dashboard</a>
+    </nav>
+
+    <button
+      class="logout mobile-hide"
+      (click)="logout()">
+      Logout
+    </button>
+
+  </aside>
+
+  <main>
+
+    <header>
+
+      <div>
+        <p class="eyebrow">
+          BUSINESS DASHBOARD
+        </p>
+
+        <h1>Good morning, Sundar</h1>
+
+        <p>
+          Here is today's workshop overview.
+        </p>
+      </div>
+
+      <button
+        class="logout"
+        (click)="logout()">
+        Logout
+      </button>
+
+    </header>
+
+
+    <!-- Dashboard statistics -->
+
+    <section
+      class="stats"
+      aria-label="Business status">
+
+      <article class="pink">
+        <span>New Enquiries</span>
+        <strong>{{ newEnquiriesCount }}</strong>
+      </article>
+
+      <article class="gold">
+        <span>Contacted</span>
+        <strong>{{ contactedCount }}</strong>
+      </article>
+
+      <article class="violet">
+        <span>Quoted</span>
+        <strong>{{ quotedCount }}</strong>
+      </article>
+
+      <article class="green">
+        <span>Closed</span>
+        <strong>{{ closedCount }}</strong>
+      </article>
+
+    </section>
+
+
+    <!-- Customer Enquiries -->
+
+    <section class="enquiries">
+
+      <div class="section-title">
+
+        <div>
+          <p class="eyebrow">
+            CUSTOMER REQUESTS
+          </p>
+
+          <h2>Recent Enquiries</h2>
+        </div>
+
+        <span>
+          {{ enquiries.length }} enquiries
+        </span>
+
+      </div>
+
+
+      <p *ngIf="loadingEnquiries">
+        Loading enquiries...
+      </p>
+
+
+      <p
+        *ngIf="enquiryError"
+        class="error">
+        {{ enquiryError }}
+      </p>
+
+
+      <p
+        *ngIf="
+          !loadingEnquiries &&
+          !enquiryError &&
+          enquiries.length === 0
+        ">
+        No customer enquiries yet.
+      </p>
+
+
+      <div
+        class="table-wrap"
+        *ngIf="enquiries.length > 0">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Phone</th>
+              <th>Type</th>
+              <th>Quantity</th>
+              <th>Required Date</th>
+              <th>Notes</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+
+          <tbody>
+
+            <tr
+              *ngFor="let enquiry of enquiries">
+
+              <td data-label="Customer">
+                <strong>
+                  {{ enquiry.customerName }}
+                </strong>
+              </td>
+
+
+              <td data-label="Phone">
+
+                <a
+                  [href]="'tel:' + enquiry.phoneNumber">
+
+                  {{ enquiry.phoneNumber }}
+
+                </a>
+
+              </td>
+
+
+              <td data-label="Type">
+
+                {{ enquiry.enquiryType }}
+
+              </td>
+
+
+              <td data-label="Quantity">
+
+                {{ enquiry.quantity }}
+
+              </td>
+
+
+              <td data-label="Required Date">
+
+                <span *ngIf="enquiry.requiredDate">
+                  {{
+                    enquiry.requiredDate
+                      | date:'dd MMM yyyy'
+                  }}
+                </span>
+
+                <span *ngIf="!enquiry.requiredDate">
+                  -
+                </span>
+
+              </td>
+
+
+              <td data-label="Notes">
+
+                {{ enquiry.notes || '-' }}
+
+              </td>
+
+
+              <td data-label="Status">
+
+                <select
+                  class="status-select"
+                  [ngModel]="enquiry.status"
+                  (ngModelChange)="
+                    updateStatus(enquiry, $event)
+                  ">
+
+                  <option
+                    *ngFor="let status of statuses"
+                    [value]="status">
+
+                    {{ status }}
+
+                  </option>
+
+                </select>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+
+    <!-- Existing Design Management -->
+
+    <app-manage-designs>
+    </app-manage-designs>
+
+  </main>
+
+</div>

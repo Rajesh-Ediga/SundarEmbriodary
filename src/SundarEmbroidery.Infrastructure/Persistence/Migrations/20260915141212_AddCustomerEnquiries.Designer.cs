@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SundarEmbroidery.Infrastructure.Persistence;
@@ -11,9 +12,11 @@ using SundarEmbroidery.Infrastructure.Persistence;
 namespace SundarEmbroidery.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(SundarEmbroideryDbContext))]
-    partial class SundarEmbroideryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260915141212_AddCustomerEnquiries")]
+    partial class AddCustomerEnquiries
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

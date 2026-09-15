@@ -1,0 +1,19 @@
+@host = http://localhost:5251
+
+### Create enquiry
+POST {{host}}/api/enquiries
+Content-Type: application/json
+
+{
+  "customerName": "Test Customer",
+  "phoneNumber": "9876543210",
+  "designId": null,
+  "quantity": 2,
+  "enquiryType": "Normal",
+  "requiredDate": null,
+  "notes": "Interested in saree embroidery",
+  "referenceImageUrl": null
+}
+
+### Get all enquiries
+GET {{host}}/api/enquiries/admin

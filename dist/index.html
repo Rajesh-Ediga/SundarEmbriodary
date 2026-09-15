@@ -46,6 +46,7 @@
     <section id="designs" class="section designs" aria-labelledby="design-title">
       <div class="section-heading"><div><p class="eyebrow">Published designs</p><h2 id="design-title">Popular from our workshop</h2></div><button class="text-button" id="showAll">View all categories</button></div>
       <p id="designStatus" class="design-status" role="status" aria-live="polite">Loading designs…</p>
+      <p id="enquirySuccess" class="design-status success" role="status" aria-live="polite"></p>
       <div id="productGrid" class="product-grid"></div>
     </section>
 
@@ -77,6 +78,28 @@
   <footer><div class="brand"><span class="brand-mark">S</span><span><b>Sundar</b><small>Embroidery Works</small></span></div><p>Made with care in Anantapur</p><p>© <span id="year"></span> Sundar Embroidery Works</p></footer>
   <a class="whatsapp-float" href="https://wa.me/919849946388" aria-label="Chat with Sundar Embroidery Works on WhatsApp">WhatsApp</a>
   <dialog id="productDialog"><button class="dialog-close" aria-label="Close">×</button><div id="productDetail"></div></dialog>
+  <dialog id="enquiryDialog" class="enquiry-dialog">
+    <button class="dialog-close enquiry-close" type="button" aria-label="Close enquiry form">×</button>
+    <div class="enquiry-layout">
+      <div class="enquiry-design">
+        <img id="enquiryDesignImage" alt="">
+        <p class="eyebrow">Selected design</p>
+        <h2 id="enquiryDesignName"></h2>
+        <p id="enquiryDesignPrice" class="enquiry-price"></p>
+      </div>
+      <form id="enquiryForm" novalidate>
+        <h2>Send an enquiry</h2>
+        <label>Customer Name *<input name="customerName" maxlength="150" autocomplete="name" required></label>
+        <label>Phone Number *<input name="phoneNumber" type="tel" maxlength="20" autocomplete="tel" required></label>
+        <label>Quantity *<input name="quantity" type="number" min="1" value="1" required></label>
+        <label>Enquiry Type<select name="enquiryType" required><option value="Normal">Normal</option><option value="Bulk">Bulk</option></select></label>
+        <label>Required Date (optional)<input name="requiredDate" type="date"></label>
+        <label>Notes (optional)<textarea name="notes" maxlength="1000" rows="3"></textarea></label>
+        <p id="enquiryError" class="error enquiry-message" role="alert"></p>
+        <button id="enquirySubmit" class="button primary" type="submit">Send enquiry</button>
+      </form>
+    </div>
+  </dialog>
   <script src="config.js"></script>
   <script src="app.js"></script>
 </body>
